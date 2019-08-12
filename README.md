@@ -1,30 +1,37 @@
-TypeScript Express Demo
-=======================
-
-Write express code in typescript.
+TypeScript Express CORS Demo
+============================
 
 ```
 npm install
 npm run demo
 ```
 
-Then visit <http://localhost:3000/typescript>, you will see `Hello, typescript`.
-
-My question is:
-
-I've already set:
+Then with 'httpie':
 
 ```
-"noImplicitAny": true,
+http localhost:3000/data.json
 ```
 
-in `tsconfig.json`, but in the `server.ts`, I didn't specify the type for `req` and `res`,
-but typescript doesn't report any errors:
+Will see:
 
 ```
-app.get('/:name', (req, res) => {
-   ...
-})
+http localhost:3000/data.json
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Access-Control-Allow-Origin: *
+Cache-Control: public, max-age=0
+Connection: keep-alive
+Content-Length: 38
+Content-Type: application/json; charset=UTF-8
+Date: Mon, 12 Aug 2019 08:46:12 GMT
+ETag: W/"26-16c850055b5"
+Last-Modified: Mon, 12 Aug 2019 08:44:47 GMT
+X-Powered-By: Express
+
+{
+    "hello": "Hello from data.json"
+}
+
 ```
 
-Why?
+Notice it has response header: `Access-Control-Allow-Origin: *`
